@@ -6,24 +6,3 @@ export const login = (user) =>
 
 export const signup = (user) =>
     axios.post("http://localhost:3000/api/auth/signup", user);
-export const getAdmin = () =>
-    axios.get("http://localhost:3000/api/auth/admin", {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-    });
-export const getUser = () =>
-    axios.get("http://localhost:3000/api/auth/user", {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-    });
-export const deleteUser = (password) =>
-    axios.delete("http://localhost:3000/api/auth/user", {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-            password,
-        },
-    });

@@ -1,10 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Inscription from '../views/Inscription.vue'
-import Home from '../views/Home.vue'
+import Tache from '../views/Tache.vue'
 
-
-// Afin de garder la session ouverte de l'utilisateur, on crée authenticate pour verifier la présence ou pas du token dans localstorage
 
 const routes = [{
         path: '/',
@@ -17,9 +15,9 @@ const routes = [{
         component: Inscription
     },
     {
-        path: '/Home',
-        name: 'Home',
-        component: Home,
+        path: '/Tache',
+        name: 'Tache',
+        component: Tache,
 
     },
 ]

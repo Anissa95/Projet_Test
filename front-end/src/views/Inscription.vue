@@ -67,44 +67,21 @@ export default {
         password: "",
         published: false,
       },
-      alertMsg: "",
+      submitted: false,
     };
   },
   methods: {
-    // Verification des inputs username, email et MDP lors de l'inscription
-    validForm() {
-      let emailRegExp = new RegExp(
-        "^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
-        "g"
-      );
-      // Tester l'expression regex
-      let testUsername = this.user.username.length > 0;
-      let testEmail = emailRegExp.test(this.user.email);
-      let testPassword = this.user.password.length > 5;
-      console.log({ testEmail, testPassword, testUsername });
-      return testEmail && testPassword && testUsername;
-    },
-    // Enregistrement d'un user
     saveUser() {
       const data = {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
       };
-      const isformValid = this.validForm();
-      if (isformValid) {
-        signup(data)
-          .then(() => {
-            this.$router.push("/");
-          })
-          .catch((err) => console.log(err));
-      } else {
-        alert("Veuillez renseignez tous les champs SVP!!");
-      }
-      // S'inscrire
-    },
-    verifieUser() {
-      this.$router.push("/");
+      signup(data)
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch((err) => console.log(err));
     },
     newUser() {
       this.submitted = false;
@@ -175,6 +152,6 @@ main {
   transition: 0.4s background-color;
 }
 .btn-connex{
-  background: rgb(214, 96, 96);
+  background: radial-gradient(103.18% 236.51% at 96.82% 50%, #D13650 0%, #D33B64 32.29%, #9C3D80 54.17%, #3565A5 100%), #1D1D1B;
 }
 </style>
