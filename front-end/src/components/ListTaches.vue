@@ -5,17 +5,11 @@
       <button
         type="button"
         title="Enregistrer une tâche"
-        class="far fa-edit tache"
-        @click="goToAddPage"
+      class="far fa-edit tache"
+        
+        @click="goToAddPage" 
       >
         Enregistrer une tâche
-      </button>
-      <button
-        type="button"
-        title="Modifier ou supprimer une tâche"
-        class="updateTache"
-        @click="goToEditPage">
-      Modifier ou supprimer une tâche
       </button>
 
     </div>
@@ -27,7 +21,8 @@
                 <th>Tâche</th>
                 <th>Heure début</th>
         <th>Heure fin</th>
-            </tr>                     
+        
+                </tr>              
         </thead>
         <tbody>
             <tr v-for="tache in taches" :key="tache.id" >
@@ -35,8 +30,18 @@
                 <td>{{tache.tache}}  </td>
                  <td>{{tache.heureDebut}} </td> 
                  <td>{{tache.heureFin}} </td>
+                 <th> 
+                  
+                  <span @click="deleteTache(tache.id)">
+                    <i
+                      v-if=" isAdmin === true"
+                      class="fas fa-trash-alt style-icon"
+                    ></i
+                  ></span>
+                </th>
+            </tr>
 
-                </tr>
+               
                             
                     </tbody>
 
@@ -72,9 +77,6 @@ export default {
       return event.toLocaleDateString("fr-Fr", opt);
     },
     
-    goToEditPage(id) {
-      this.$router.push({ name: "EditTache", params: { id } });
-    },
     deleteTache(id) {
       deleteTache(id).then(() => {
         getAllTache().then((response) => {
@@ -100,7 +102,7 @@ export default {
   align-items: center;
   gap: 12px;
 }
-.far.fa-edit.tache, .updateTache {
+.far.fa-edit.tache {
   border-radius: 8px;
   font-weight: 600;
   font-size: 20px;

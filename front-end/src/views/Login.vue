@@ -67,13 +67,33 @@ export default {
         email: this.user.email,
         password: this.user.password,
       };
-      login(data)
-        .then(() => {
-          this.$router.push("tache"); //push() pour la redirection vers la page Home
-        })
-        .catch((err) => console.log(err));
-    },goToRegister() {
+      const isformValid = this.validForm();
+      if (isformValid) {
+        login(data)
+          .then((response) => {
+            localStorage.setItem("token", response.data.token);
+            this.$store.state.user.isAdmin = response.data.isAdmin;
+            this.$store.state.user.userId = response.data.userId;
+            this.$store.state.user.islogged = true;
+            this.$router.push("/tache"); //push() pour la redirection vers le mur 
+          })
+          .catch(() => alert("Email ou mot de passe incorrect"));
+      } else {
+        alert("Veuillez remplir tous les champs!!");
+      }
+    },
+    goToRegister() {
       this.$router.push("/inscription");
+    },
+    validForm() {
+      let emailRegExp = new RegExp(
+        "^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
+        "g"
+      );
+      // tester l'expression regex
+      let testEmail = emailRegExp.test(this.user.email);
+      let testPassword = this.user.password.length > 0;
+      return testEmail && testPassword;
     },
   },
 };

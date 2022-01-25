@@ -21,12 +21,12 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 //Importer le model User.js / Taches.js
 db.user = require("./User.js")(sequelize, Sequelize);
-//db.tache = require("./Tache.js")(sequelize, Sequelize);
+db.tache = require("./Tache.js")(sequelize, Sequelize);
 
 
 //------------------Création des clé étrangère----------------------
-//db.user.hasMany(db.tache);
-//db.tache.belongsTo(db.user);
+db.user.hasMany(db.tache);
+db.tache.belongsTo(db.user);
 
 
 

@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Inscription from '../views/Inscription.vue'
 import Tache from '../views/Tache.vue'
+import AddTache from "../components/AddTache.vue";
+
 
 
 const routes = [{
@@ -18,6 +20,12 @@ const routes = [{
         path: '/Tache',
         name: 'Tache',
         component: Tache,
+
+    },
+    {
+        path: "/addTache",
+        name: "AdTache",
+        component: AddTache,
 
     },
 ]

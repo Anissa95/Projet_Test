@@ -71,17 +71,40 @@ export default {
     };
   },
   methods: {
+    // Verification des inputs username, email et MDP lors de l'inscription
+    validForm() {
+      let emailRegExp = new RegExp(
+        "^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
+        "g"
+      );
+      // Tester l'expression regex
+      let testUsername = this.user.username.length > 0;
+      let testEmail = emailRegExp.test(this.user.email);
+      let testPassword = this.user.password.length > 5;
+      console.log({ testEmail, testPassword, testUsername });
+      return testEmail && testPassword && testUsername;
+    },
+    // Enregistrement d'un user
     saveUser() {
       const data = {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
       };
-      signup(data)
-        .then(() => {
-          this.$router.push("/");
-        })
-        .catch((err) => console.log(err));
+      const isformValid = this.validForm();
+      if (isformValid) {
+        signup(data)
+          .then(() => {
+            this.$router.push("/");
+          })
+          .catch((err) => console.log(err));
+      } else {
+        alert("Veuillez renseignez tous les champs SVP!!");
+      }
+      // S'inscrire
+    },
+    verifieUser() {
+      this.$router.push("/");
     },
     newUser() {
       this.submitted = false;
