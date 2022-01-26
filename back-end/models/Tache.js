@@ -13,14 +13,12 @@ module.exports = (sequelize, Sequelize) => {
             heureDebut: {
                 type: Sequelize.TIME,
                 defaultValue: '00:00:00',
-
             },
             heureFin: {
                 type: Sequelize.TIME,
                 defaultValue: '00:00:00',
 
-            },
-
+            }
         }
     );
 

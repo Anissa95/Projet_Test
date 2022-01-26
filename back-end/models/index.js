@@ -23,11 +23,8 @@ db.sequelize = sequelize;
 db.user = require("./User.js")(sequelize, Sequelize);
 db.tache = require("./Tache.js")(sequelize, Sequelize);
 
-
 //------------------Création des clé étrangère----------------------
 db.user.hasMany(db.tache);
 db.tache.belongsTo(db.user);
-
-
 
 module.exports = db;

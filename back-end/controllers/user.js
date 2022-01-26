@@ -43,7 +43,7 @@ exports.login = (req, res, next) => {
                     return res.status(200).json({
                         userId: user.id,
                         isAdmin: user.isAdmin,
-                        token: jwt.sign({ userId: user.id }, "RANDOM_TOKEN_SECRET", {
+                        token: jwt.sign({ userId: user.id }, process.env.TOKEN_KEY, {
                             expiresIn: "1h",
                         }),
                     });
@@ -56,16 +56,23 @@ exports.login = (req, res, next) => {
 exports.deleteUser = (req, res, next) => {
 
 };
-//Afficher l'administrateur
-exports.getAdmin = (req, res, next) => {
 
-};
 //Trouver un user 
 exports.findUser = (req, res, next) => {
 
 };
 //Récuperer tous les utilisateurs
-exports.findAllUsers = (req, res, next) => {
-
-
+exports.getUser = (req, res, next) => {
+    const token = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
+    const userId = decodedToken.userId;
+    db.user
+        .findOne({
+            attributes: ["username", "email", "id", "isAdmin"],
+            where: { id: userId },
+        })
+        .then((user) => {
+            res.status(200).json({ user });
+        })
+        .catch((error) => res.status(500).json({ error }));
 };
