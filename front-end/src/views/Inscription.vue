@@ -165,7 +165,7 @@ main {
   font-weight: 500;
 }
 .btn {
-  color: black;
+  color:white;
   border-radius: 8px;
   font-weight: 600;
   font-size: 18px;
