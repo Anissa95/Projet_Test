@@ -12,6 +12,18 @@
         Enregistrer une tâche
       </button>
     </div>
+    <div>
+  
+    <label for="selection">Vous pouvez ordonner la liste selon ses critères:</label>
+
+    <select name="critere" id="selection">
+    
+    <option value="Label">tâche</option>
+    <option value="HeureDebut">Heure de début</option>
+    <option value="HeureFin">Heure de fin</option>
+    
+</select>
+</div>
     <div class="container mt-4">
       <table class="table table -bordered">
         <thead>
@@ -84,7 +96,16 @@ export default {
   margin-top: 20px;
 }
 
-
+.card-actualite {
+  color: rgb(12, 12, 82);
+  font-size: 34px;
+  font-weight: 800;
+}
+.style-div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 .far.fa-edit.tache {
   color: white;
   border-radius: 8px;
